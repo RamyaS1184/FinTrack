@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex space-x-7">
+                    <a href="home.html" class="flex items-center">
+                        <i class="fas fa-wallet text-2xl text-cyan-600 mr-2"></i>
+                        <span class="font-semibold text-gray-900 text-lg">FinTrack</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="home.html" class="py-2 px-4 text-gray-700 hover:text-cyan-600">Home</a>
+                                        <a href="index.html" class="py-2 px-4 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition">Budget Tracker</a>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header Section -->
+        <header class="bg-gradient-to-r from-cyan-400 to-cyan-700 text-white rounded-lg shadow-md p-8 mb-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold mb-4">Budget Tracker</h1>
+                <p class="text-xl">Track your expenses and stay within budget</p>
+            </div>
+        </header>
+
+        <!-- Budget Section -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4">Set Monthly Budget</h2>
+            <div class="flex flex-col md:flex-row gap-4">
+                <input type="number" id="budgetAmount" placeholder="Enter amount" 
+                    class="flex-1 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                <button id="setBudget" 
+                    class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-6 rounded-lg transition">
+                    Set Budget
+                </button>
+            </div>
+            <div id="budgetError" class="text-red-500 mt-2 hidden">Please enter a valid budget amount</div>
+        </section>
+
+        <!-- Expense Form -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4">Add Expense</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <input type="number" id="expenseAmount" placeholder="Amount" 
+                    class="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                <input type="text" id="expenseDescription" placeholder="Description" 
+                    class="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                <select id="expenseCategory" 
+                    class="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                    <option value="" disabled selected>Category</option>
+                    <option value="Food">Food</option>
+                    <option value="Rent">Rent</option>
+                    <option value="Utilities">Utilities</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Others">Others</option>
+                </select>
+                <input type="date" id="expenseDate" 
+                    class="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
+            </div>
+            <button id="addExpense" 
+                class="mt-4 bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-6 rounded-lg transition">
+                Add Expense
+            </button>
+            <div id="expenseError" class="text-red-500 mt-2 hidden">Please fill all fields with valid values</div>
+        </section>
+
+        <!-- Summary Section -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-xl font-semibold">Budget Summary</h2>
+                    <p class="text-gray-500">As of <span id="currentDate"></span></p>
+                </div>
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="text-center">
+                        <p class="text-gray-500">Budget</p>
+                        <p class="text-2xl font-bold" id="totalBudget">$0.00</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-gray-500">Spent</p>
+                        <p class="text-2xl font-bold" id="totalExpenses">$0.00</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-gray-500">Remaining</p>
+                        <p class="text--2xl font-bold" id="remainingBalance">$0.00</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chart Section -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4">Expense Breakdown</h2>
+            <div class="chart-container" style="position: relative; height:400px; width:100%">
+                <canvas id="expenseChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Expense List -->
+        <section class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold mb-4">Recent Expenses</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount (₹)</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expenseList" class="bg-white divide-y divide-gray-200">
+                        <!-- Expenses will be added here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+            menu.classList.toggle('flex-col');
+            menu.classList.toggle('absolute');
+            menu.classList.toggle('top-16');
+            menu.classList.toggle('right-4');
+            menu.classList.toggle('bg-white');
+            menu.classList.toggle('p-4');
+            menu.classList.toggle('rounded-lg');
+            menu.classList.toggle('shadow-xl');
+        });
+    </script>
+</body>
+</html>

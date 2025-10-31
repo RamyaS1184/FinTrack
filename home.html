@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .hero-bg {
+            background: linear-gradient(135deg, #06b6d4 0%, #0e7490 100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex space-x-7">
+                    <a href="#" class="flex items-center">
+                        <i class="fas fa-wallet text-2xl text-cyan-600 mr-2"></i>
+                        <span class="font-semibold text-gray-900 text-lg">FinTrack</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="home.html" class="py-2 px-4 text-gray-700 hover:text-cyan-600">Home</a>
+                    <a href="index.html" class="py-2 px-4 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition">Budget Tracker</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl font-bold mb-6">Take Control of Your Finances</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Track expenses, set budgets, and achieve your financial goals <br> with our easy-to-use tools.</p>
+            <a href="index.html" class="bg-white text-cyan-600 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition inline-block">
+                Get Started <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Why Choose FinTrack?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                    <i class="fas fa-chart-pie text-4xl text-cyan-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Visual Analytics</h3>
+                    <p class="text-gray-600">Beautiful charts help you understand your spending patterns.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                    <i class="fas fa-bell text-4xl text-cyan-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Budget Alerts</h3>
+                    <p class="text-gray-600">Get notified when you're approaching your budget limits.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                    <i class="fas fa-mobile-alt text-4xl text-cyan-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Mobile Friendly</h3>
+                    <p class="text-gray-600">Access your finances anywhere, on any device.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>© 2023 FinTrack. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
