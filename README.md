@@ -1,6 +1,6 @@
 # FinTrack - Personal Budget Tracker
 
-FinTrack is a responsive and modern web-based personal finance manager. It allows users to set a monthly budget, track their expenses, and visualize their spending habits through an interactive pie chart. The application is built with vanilla JavaScript, Tailwind CSS, and Chart.js, and it uses `localStorage` to persist data in the browser.
+FinTrack is a responsive and modern web-based personal finance manager. It allows users to set a monthly budget, track their expenses, and visualize their spending habits through an interactive pie chart. The application is built with vanilla JavaScript, CSS, and Chart.js, and it uses `localStorage` to persist data in the browser.
 
 This project includes a stylish landing page (`home.html`) and the main budget tracker application (`index.html`).
 
