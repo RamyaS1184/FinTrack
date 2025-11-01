@@ -23,7 +23,7 @@ This project includes a stylish landing page (`home.html`) and the main budget t
 ## 🛠️ Technologies Used
 
 * **HTML5:** For the application structure.
-* **CSS3 & Tailwind CSS:** For all styling and the responsive, utility-first design.
+* **CSS3 :** For all styling and the responsive, utility-first design.
 * **Vanilla JavaScript (ES6+):** For all application logic, DOM manipulation, and event handling.
 * **Chart.js:** For the interactive and beautiful pie chart visualization.
 * **Font Awesome:** For icons (wallet, trash bin, etc.).
